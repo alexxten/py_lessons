@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Ноутбук ASUS",
+        "category": "electronics",
+        "price": 45000,
+        "old_price": 50000,
+        "in_stock": true,
+        "rating": 4.5
+    },
+    {
+        "id": 2,
+        "name": "Смартфон Xiaomi",
+        "category": "electronics",
+        "price": 25000,
+        "old_price": 27000,
+        "in_stock": true,
+        "rating": 4.7
+    },
+    {
+        "id": 3,
+        "name": "Наушники Sony",
+        "category": "audio",
+        "price": 5000,
+        "old_price": 6000,
+        "in_stock": false,
+        "rating": 4.3
+    },
+    {
+        "id": 4,
+        "name": "Планшет Samsung",
+        "category": "electronics",
+        "price": 30000,
+        "old_price": 32000,
+        "in_stock": true,
+        "rating": 4.4
+    },
+    {
+        "id": 5,
+        "name": "Колонка JBL",
+        "category": "audio",
+        "price": 4000,
+        "old_price": 4500,
+        "in_stock": true,
+        "rating": 4.6
+    }
+]
