@@ -3,30 +3,33 @@
 class Animal:
   def __init__(self, name:str, age:int, hunger_level:int = 50):
     self.name = name
-    self.age = age
-    self.hunger_level = hunger_level
-    ##Тут нужно ставить ограничение??????????
-    ##Тип:
-    ##if 0 <= self.hunger_level <= 100:
-    ##  self.hunger_level = hunger_level
-    ##else:
-    ##  print(f"Возраст животного может быть только от 0 до 100.")
+
+    def value_check(arg):
+        if arg <= 0:
+            raise ValueError("Hunger or Age values cannot be a negative number.")
+        elif arg > 100:
+            raise ValueError("Hunger or Age values cannot be greater than 100.")
+        else:
+            return (arg)
+
+    self.age = value_check(age)
+    self.hunger_level = value_check(hunger_level)
 
   def make_sound(self):
-    print('Животное издаёт звук')
+    return('Животное издаёт звук')
 
   def move(self):
-    print(f"{self.name} двигается")
+    return(f"{self.name} двигается")
 
   def eat(self):
     if self.hunger_level < 10:
       self.hunger_level = 0
     else:
       self.hunger_level = self.hunger_level - 10
-    print(f"{self.name} поел. Голод: {self.hunger_level}")
+    return(f"{self.name} поел. Голод: {self.hunger_level}")
 
   def get_info(self):
-    print(f"{self.name}, возраст: {self.age} лет, голод: {self.hunger_level}")
+    return(f"{self.name}, возраст: {self.age} лет, голод: {self.hunger_level}")
 
 animal_bayun = Animal(name="Bayun", age="4")
 animal_bayun.make_sound()
@@ -42,10 +45,10 @@ animal_arcasha.get_info()
 class Lion(Animal):
 
     def make_sound(self):
-        print(f"Рррр! Рык льва!")
+        return(f"Рррр! Рык льва!")
 
     def move(self):
-        print(f"{self.name} грациозно крадётся")
+        return(f"{self.name} грациозно крадётся")
 
     def hunt(self):
         if self.hunger_level > 80:
@@ -53,7 +56,7 @@ class Lion(Animal):
         else:
             self.hunger_level = self.hunger_level + 20
 
-        print(f"{self.name} охотится!")
+        return(f"{self.name} охотится!")
 
 lion_timusya = Lion(name = 'Timusya', age = 3, hunger_level = 8)
 lion_timusya.hunt()
