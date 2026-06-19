@@ -1,32 +1,28 @@
 from py2026_05_23.calculator.calc import Calculator
+from py2026_05_23.calculator.exceptions import UnknownOperationException
 
 def user_input():
     first_value = input("Введите первое число:")
     second_value = input("Введите второе число:")
     operation = input("Выберите операцию (+, -, *, /):")
-    return(first_value, second_value, operation)
+    return first_value, second_value, operation
 
 ##ПРОВЕРКА НА ОШИБКИ
 
-def validation(*arg):  ##Тут типа проверка на ошибки??? Или я не понял...
-    first_value, second_value, operation = user_input()
-
-    class CustomException(Exception):
-        def __init__(self, message: str):
-            super().__init__(message)
-
+def validation(first_value, second_value, operation):  ##Тут типа проверка на ошибки??? Или я не понял...
     if operation not in ["+", "-", "*", "/"]:
-        raise CustomException("Ошибка: Неизвестная операция. Используйте +, -, *, /.")
+        return False, UnknownOperationException("Ошибка: Неизвестная операция. Используйте +, -, *, /.")
     elif second_value == 0:
-        raise ZeroDivisionError("Ошибка: На ноль делить нельзя!")
+        return False, ZeroDivisionError("Ошибка: На ноль делить нельзя!")
 
     try:
         first_value = float(first_value)
         second_value = float(second_value)
     except ValueError as e:
-        raise ValueError("Ошибка: Введите число, а не текст.")
-
-    return (first_value, second_value, operation)
+        return False, ValueError("Ошибка: Введите число, а не текст.")
+    #
+    # return (first_value, second_value, operation)
+    return True, None
 
 ##КАЛЬКУЛЯТОР
 
@@ -51,4 +47,9 @@ def use_calc():
 
 if __name__ == '__main__': ## Шо ито значит? Моя не понимать...
     print("Hello, user")
+    first_value, second_value, operation = user_input()
+    is_success, error = validation(first_value, second_value, operation)
+    if not is_success:
+        print("ошибка////")
+    result = use_calc()
     print(f"Your answer is {use_calc()}")

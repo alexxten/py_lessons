@@ -1,4 +1,4 @@
-class Calculator():
+class Calculator:
     def __init__(self, variable_first: int, variable_second: int, math_operation: str):
         self.variable_first = variable_first
         self.variable_second = variable_second
