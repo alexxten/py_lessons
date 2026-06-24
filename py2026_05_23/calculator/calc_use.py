@@ -1,16 +1,54 @@
 from py2026_05_23.calculator.calc import Calculator
 
 def user_input():
-    ...
+    first_value = input("Введите первое число:")
+    second_value = input("Введите второе число:")
+    operation = input("Выберите операцию (+, -, *, /):")
+    return(first_value, second_value, operation)
 
-def validation():
-    ...
+##ПРОВЕРКА НА ОШИБКИ
+
+def validation(*arg):  ##Тут типа проверка на ошибки??? Или я не понял...
+    first_value, second_value, operation = user_input()
+
+    class CustomException(Exception):
+        def __init__(self, message: str):
+            super().__init__(message)
+
+    if operation not in ["+", "-", "*", "/"]:
+        raise CustomException("Ошибка: Неизвестная операция. Используйте +, -, *, /.")
+    elif second_value == 0:
+        raise ZeroDivisionError("Ошибка: На ноль делить нельзя!")
+
+    try:
+        first_value = float(first_value)
+        second_value = float(second_value)
+    except ValueError as e:
+        raise ValueError("Ошибка: Введите число, а не текст.")
+
+    return (first_value, second_value, operation)
+
+##КАЛЬКУЛЯТОР
 
 def use_calc():
-    Calculator()
-    return answer
+    call_for_gods = validation()
+    first_value = call_for_gods[0]
+    second_value =  call_for_gods[1]
+    operation =  call_for_gods[2]
+
+    calculator_values = Calculator(variable_first = first_value, variable_second = second_value, math_operation = operation)
+    operation_result = 0
+    if operation == '+':
+      operation_result = calculator_values.addition()
+    elif operation == '-':
+      operation_result = calculator_values.subtraction()
+    elif operation == '/':
+      operation_result = calculator_values.division()
+    elif operation == '*':
+      operation_result = calculator_values.multiplication()
+    return operation_result
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': ## Шо ито значит? Моя не понимать...
     print("Hello, user")
-    print(f"Your answer is {..}")
+    print(f"Your answer is {use_calc()}")
